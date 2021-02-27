@@ -55,3 +55,4 @@ D:\Projects\.NET-Playground\StudentsSystem\StudentsSystem.Web\bin\Debug\net5.0\S
 D:\Projects\.NET-Playground\StudentsSystem\StudentsSystem.Web\bin\Debug\net5.0\StudentsSystem.Services.pdb
 D:\Projects\.NET-Playground\StudentsSystem\StudentsSystem.Web\bin\Debug\net5.0\StudentsSystem.Data.pdb
 D:\Projects\.NET-Playground\StudentsSystem\StudentsSystem.Web\obj\Debug\net5.0\StudentsSystem.Web.csprojAssemblyReference.cache
+D:\Projects\.NET-Playground\StudentsSystem\StudentsSystem.Web\obj\Debug\net5.0\Razor\Views\Disciplines\DisciplinesList.cshtml.g.cs

@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Views\Disciplines\" />
     <Folder Include="Views\Semesters\" />
     <Folder Include="Views\Students\" />
     <Folder Include="wwwroot\css\NewFolder\" />

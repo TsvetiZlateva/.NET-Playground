@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using StudentsSystem.Data;
 using StudentsSystem.Services;
+using StudentsSystem.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,8 +27,9 @@ namespace StudentsSystem.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddTransient<MySqlDatabase>(_ => new MySqlDatabase("server=localhost; port=3306; database=Test; uid=root; pwd=1111;"));
+            services.AddTransient<MySqlDatabase>(_ => new MySqlDatabase("server=localhost; port=3306; database=student_system; uid=root; pwd=1111;"));
             services.AddTransient<TasksService>();
+            services.AddTransient<IDIsciplineService, DIsciplineService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
