@@ -1,0 +1,15 @@
+D:\Projects\.NET-Playground\StudentsSystem\StudentsSystem.Services\bin\Debug\net5.0\StudentsSystem.Services.deps.json
+D:\Projects\.NET-Playground\StudentsSystem\StudentsSystem.Services\bin\Debug\net5.0\StudentsSystem.Services.dll
+D:\Projects\.NET-Playground\StudentsSystem\StudentsSystem.Services\bin\Debug\net5.0\ref\StudentsSystem.Services.dll
+D:\Projects\.NET-Playground\StudentsSystem\StudentsSystem.Services\bin\Debug\net5.0\StudentsSystem.Services.pdb
+D:\Projects\.NET-Playground\StudentsSystem\StudentsSystem.Services\bin\Debug\net5.0\StudentsSystem.Data.dll
+D:\Projects\.NET-Playground\StudentsSystem\StudentsSystem.Services\bin\Debug\net5.0\StudentsSystem.Data.pdb
+D:\Projects\.NET-Playground\StudentsSystem\StudentsSystem.Services\obj\Debug\net5.0\StudentsSystem.Services.csprojAssemblyReference.cache
+D:\Projects\.NET-Playground\StudentsSystem\StudentsSystem.Services\obj\Debug\net5.0\StudentsSystem.Services.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projects\.NET-Playground\StudentsSystem\StudentsSystem.Services\obj\Debug\net5.0\StudentsSystem.Services.AssemblyInfoInputs.cache
+D:\Projects\.NET-Playground\StudentsSystem\StudentsSystem.Services\obj\Debug\net5.0\StudentsSystem.Services.AssemblyInfo.cs
+D:\Projects\.NET-Playground\StudentsSystem\StudentsSystem.Services\obj\Debug\net5.0\StudentsSystem.Services.csproj.CoreCompileInputs.cache
+D:\Projects\.NET-Playground\StudentsSystem\StudentsSystem.Services\obj\Debug\net5.0\StudentsSystem.Services.csproj.CopyComplete
+D:\Projects\.NET-Playground\StudentsSystem\StudentsSystem.Services\obj\Debug\net5.0\StudentsSystem.Services.dll
+D:\Projects\.NET-Playground\StudentsSystem\StudentsSystem.Services\obj\Debug\net5.0\ref\StudentsSystem.Services.dll
+D:\Projects\.NET-Playground\StudentsSystem\StudentsSystem.Services\obj\Debug\net5.0\StudentsSystem.Services.pdb

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using StudentsSystem.Services;
 using StudentsSystem.Web.Models;
 using System;
 using System.Collections.Generic;
@@ -12,10 +13,12 @@ namespace StudentsSystem.Web.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly TasksService taskService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, TasksService taskService)
         {
             _logger = logger;
+            this.taskService = taskService;
         }
 
         public IActionResult Index()
@@ -23,9 +26,10 @@ namespace StudentsSystem.Web.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public async Task<IActionResult> Privacy()
         {
-            return View();
+            var model = await this.taskService.GetAllTasks();
+            return View(model);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
