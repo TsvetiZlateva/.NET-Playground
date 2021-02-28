@@ -27,6 +27,7 @@ namespace StudentsSystem.Web.Controllers
             {
                 Discipline d = new Discipline
                 {
+                    Id = discipline.Id,
                     Name = discipline.Name,
                     ProfessorName=discipline.ProfessorName
                 };
@@ -43,6 +44,30 @@ namespace StudentsSystem.Web.Controllers
             var professorName = discipline.ProfessorName;
             await this.disciplineService.CreateDisciplineAsync(name, professorName);
 
+            return this.RedirectToAction(nameof(DisciplinesList));
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> UpdateDiscipline(Discipline discipline)
+        {
+            //if (await this.disciplineService.DisciplineExistAsync(discipline.Id))
+            //{
+            //    return this.NotFound();
+            //}
+
+            if (this.ModelState.IsValid)
+            {
+                try
+                {
+                    await this.disciplineService.UpdateDisciplineAsync(discipline);
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+            }
+                
             return this.RedirectToAction(nameof(DisciplinesList));
         }
     }

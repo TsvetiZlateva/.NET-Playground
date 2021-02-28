@@ -25,6 +25,16 @@ namespace StudentsSystem.Services
             await cmd.ExecuteNonQueryAsync();
         }
 
+        public async Task<bool> DisciplineExistAsync(int id)
+        {
+            var cmd = this.db.connection.CreateCommand();
+            cmd.CommandText = String.Format(@"SELECT * FROM student_system.disciplines where Id = 55;", id);
+            var row = await cmd.ExecuteNonQueryAsync();
+            bool exist = row != 0;
+
+            return exist;
+        }
+
         public async Task<ICollection<Discipline>> GetAllDisciplinesAsync()
         {
             List<Discipline> list = new List<Discipline>();
@@ -45,6 +55,13 @@ namespace StudentsSystem.Services
                 }
 
             return list;
+        }
+
+        public async System.Threading.Tasks.Task UpdateDisciplineAsync(Discipline discipline)
+        {
+            var cmd = this.db.connection.CreateCommand();
+            cmd.CommandText = String.Format(@"UPDATE `student_system`.`disciplines` SET Name = '{0}', ProfessorName = '{1}' WHERE Id = {2};", discipline.Name, discipline.ProfessorName, discipline.Id);
+            await cmd.ExecuteNonQueryAsync();
         }
     }
 }

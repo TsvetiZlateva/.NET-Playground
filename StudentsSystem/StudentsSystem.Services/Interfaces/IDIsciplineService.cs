@@ -11,5 +11,7 @@ namespace StudentsSystem.Services.Interfaces
     {
         Task<ICollection<Discipline>> GetAllDisciplinesAsync();
         System.Threading.Tasks.Task CreateDisciplineAsync(string name, string professorName);
+        System.Threading.Tasks.Task UpdateDisciplineAsync(Discipline discipline);
+        System.Threading.Tasks.Task<bool> DisciplineExistAsync(int id);
     }
 }
