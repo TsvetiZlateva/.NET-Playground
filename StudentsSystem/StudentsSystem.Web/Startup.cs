@@ -28,8 +28,8 @@ namespace StudentsSystem.Web
         {
             services.AddControllersWithViews();
             services.AddTransient<MySqlDatabase>(_ => new MySqlDatabase("server=localhost; port=3306; database=student_system; uid=root; pwd=1111;"));
-            services.AddTransient<TasksService>();
-            services.AddTransient<IDIsciplineService, DIsciplineService>();
+            services.AddTransient<IDisciplineService, DisciplineService>();
+            services.AddTransient<ISemesterService, SemesterService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

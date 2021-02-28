@@ -13,12 +13,10 @@ namespace StudentsSystem.Web.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly TasksService taskService;
 
-        public HomeController(ILogger<HomeController> logger, TasksService taskService)
+        public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
-            this.taskService = taskService;
         }
 
         public IActionResult Index()
@@ -26,10 +24,9 @@ namespace StudentsSystem.Web.Controllers
             return View();
         }
 
-        public async Task<IActionResult> Privacy()
+        public IActionResult Privacy()
         {
-            var model = await this.taskService.GetAllTasks();
-            return View(model);
+            return View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

@@ -11,9 +11,9 @@ namespace StudentsSystem.Web.Controllers
 {
     public class DisciplinesController : Controller
     {
-        private readonly IDIsciplineService disciplineService;
+        private readonly IDisciplineService disciplineService;
 
-        public DisciplinesController(IDIsciplineService disciplineService)
+        public DisciplinesController(IDisciplineService disciplineService)
         {
             this.disciplineService = disciplineService;
         }
@@ -29,7 +29,7 @@ namespace StudentsSystem.Web.Controllers
                 {
                     Id = discipline.Id,
                     Name = discipline.Name,
-                    ProfessorName=discipline.ProfessorName
+                    ProfessorName = discipline.ProfessorName
                 };
                 view.Disciplines.Add(d);
             }
@@ -38,8 +38,14 @@ namespace StudentsSystem.Web.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateDiscipline(Discipline discipline)
         {
+            if (!this.ModelState.IsValid)
+            {
+                return this.ValidationProblem();
+            }
+
             var name = discipline.Name;
             var professorName = discipline.ProfessorName;
             await this.disciplineService.CreateDisciplineAsync(name, professorName);
@@ -51,23 +57,26 @@ namespace StudentsSystem.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> UpdateDiscipline(Discipline discipline)
         {
-            //if (await this.disciplineService.DisciplineExistAsync(discipline.Id))
-            //{
-            //    return this.NotFound();
-            //}
-
-            if (this.ModelState.IsValid)
+            if (!await this.disciplineService.DisciplineExistAsync(discipline.Id))
             {
-                try
-                {
-                    await this.disciplineService.UpdateDisciplineAsync(discipline);
-                }
-                catch (Exception ex)
-                {
-                    throw new Exception(ex.Message);
-                }
+                return this.NotFound();
             }
-                
+
+            if (!this.ModelState.IsValid)
+            {
+                return this.View("Error");
+                //return this.ValidationProblem();
+            }
+
+            try
+            {
+                await this.disciplineService.UpdateDisciplineAsync(discipline);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
             return this.RedirectToAction(nameof(DisciplinesList));
         }
 

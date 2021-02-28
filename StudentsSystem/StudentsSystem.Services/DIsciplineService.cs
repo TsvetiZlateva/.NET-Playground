@@ -3,29 +3,27 @@ using StudentsSystem.Data.Models;
 using StudentsSystem.Services.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace StudentsSystem.Services
 {
-    public class DIsciplineService : IDIsciplineService
+    public class DisciplineService : IDisciplineService
     {
         private readonly MySqlDatabase db;
 
-        public DIsciplineService(MySqlDatabase db)
+        public DisciplineService(MySqlDatabase db)
         {
             this.db = db;
         }
 
-        public async System.Threading.Tasks.Task CreateDisciplineAsync(string name, string professorName)
+        public async Task CreateDisciplineAsync(string name, string professorName)
         {
             var cmd = this.db.connection.CreateCommand();
             cmd.CommandText = String.Format(@"INSERT INTO `student_system`.`disciplines`(`Name`,`ProfessorName`)VALUES('{0}','{1}');", name, professorName);
             await cmd.ExecuteNonQueryAsync();
         }
 
-        public async System.Threading.Tasks.Task DeleteDisciplineAsync(int id)
+        public async Task DeleteDisciplineAsync(int id)
         {
             var cmd = this.db.connection.CreateCommand();
             cmd.CommandText = String.Format(@"DELETE FROM `student_system`.`disciplines`WHERE Id = {0};", id);
@@ -34,12 +32,19 @@ namespace StudentsSystem.Services
 
         public async Task<bool> DisciplineExistAsync(int id)
         {
+            List<Discipline> list = new List<Discipline>();
             var cmd = this.db.connection.CreateCommand();
-            cmd.CommandText = String.Format(@"SELECT * FROM student_system.disciplines where Id = 55;", id);
-            var row = await cmd.ExecuteNonQueryAsync();
-            bool exist = row != 0;
+            cmd.CommandText = String.Format(@"SELECT * FROM student_system.disciplines where Id = {0};", id);
+            var reader = await cmd.ExecuteReaderAsync();
 
-            return exist;
+            if (reader.HasRows)
+            {
+                reader.Close();
+                return true;
+            }
+
+            reader.Close();
+            return false;          
         }
 
         public async Task<ICollection<Discipline>> GetAllDisciplinesAsync()
@@ -55,7 +60,8 @@ namespace StudentsSystem.Services
                     {
                         Id = reader.GetFieldValue<int>(0),
                         Name = reader.GetFieldValue<string>(1),
-                        ProfessorName = reader.GetFieldValue<string>(2)
+                        ProfessorName = reader.GetFieldValue<string>(2),
+                        SemesterID = Convert.IsDBNull(reader["SemesterId"]) ? null : (int?)reader["SemesterId"]
                     };
                    
                     list.Add(discipline);
@@ -64,10 +70,10 @@ namespace StudentsSystem.Services
             return list;
         }
 
-        public async System.Threading.Tasks.Task UpdateDisciplineAsync(Discipline discipline)
+        public async Task UpdateDisciplineAsync(Discipline discipline)
         {
             var cmd = this.db.connection.CreateCommand();
-            cmd.CommandText = String.Format(@"UPDATE `student_system`.`disciplines` SET Name = '{0}', ProfessorName = '{1}' WHERE Id = {2};", discipline.Name, discipline.ProfessorName, discipline.Id);
+            cmd.CommandText = String.Format(@"UPDATE `student_system`.`disciplines` SET Name = '{0}', ProfessorName = '{1}', SemesterId = {2} WHERE Id = {3};", discipline.Name, discipline.ProfessorName, discipline.SemesterID, discipline.Id);
             await cmd.ExecuteNonQueryAsync();
         }
     }
