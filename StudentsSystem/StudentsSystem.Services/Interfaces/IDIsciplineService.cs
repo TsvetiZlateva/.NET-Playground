@@ -9,6 +9,7 @@ namespace StudentsSystem.Services.Interfaces
 {
     public interface IDIsciplineService
     {
-        Task<ICollection<Discipline>> GetAllDisciplines();
+        Task<ICollection<Discipline>> GetAllDisciplinesAsync();
+        System.Threading.Tasks.Task CreateDisciplineAsync(string name, string professorName);
     }
 }

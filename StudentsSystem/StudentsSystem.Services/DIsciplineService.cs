@@ -18,7 +18,14 @@ namespace StudentsSystem.Services
             this.db = db;
         }
 
-        public async Task<ICollection<Discipline>> GetAllDisciplines()
+        public async System.Threading.Tasks.Task CreateDisciplineAsync(string name, string professorName)
+        {
+            var cmd = this.db.connection.CreateCommand();
+            cmd.CommandText = String.Format(@"INSERT INTO `student_system`.`disciplines`(`Name`,`ProfessorName`)VALUES('{0}','{1}');", name, professorName);
+            await cmd.ExecuteNonQueryAsync();
+        }
+
+        public async Task<ICollection<Discipline>> GetAllDisciplinesAsync()
         {
             List<Discipline> list = new List<Discipline>();
             var cmd = this.db.connection.CreateCommand();
