@@ -56,5 +56,26 @@ namespace StudentsSystem.Web.Controllers
             return this.RedirectToAction(nameof(SemestersList));
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> UpdateSemester(Semester semester)
+        {            
+            if (!this.ModelState.IsValid)
+            {
+                return this.View("Error");
+            }
+
+            try
+            {
+                await this.semesterService.UpdateSemesterAsync(semester);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+            return this.RedirectToAction(nameof(SemestersList));
+        }
+
     }
 }

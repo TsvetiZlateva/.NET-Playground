@@ -11,5 +11,7 @@ namespace StudentsSystem.Services.Interfaces
     {
         Task<ICollection<Semester>> GetAllSemestersAsync();
         Task CreateSemesterAsync(string name, DateTime startDate, DateTime endDate);
+
+        Task UpdateSemesterAsync(Semester semester);
     }
 }

@@ -63,5 +63,12 @@ namespace StudentsSystem.Services
 
             return list;
         }
+
+        public async Task UpdateSemesterAsync(Semester semester)
+        {
+            var cmd = this.db.connection.CreateCommand();
+            cmd.CommandText = String.Format(@"UPDATE `student_system`.`semesters` SET Name = '{0}', StartDate = '{1}', EndDate = '{2}' WHERE Id = {3};", semester.Name, semester.StartDate.ToString("yyy-MM-dd"), semester.EndDate.ToString("yyy-MM-dd"), semester.Id);
+            await cmd.ExecuteNonQueryAsync();
+        }
     }
 }
