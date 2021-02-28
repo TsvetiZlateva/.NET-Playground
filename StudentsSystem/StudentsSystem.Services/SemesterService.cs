@@ -29,6 +29,7 @@ namespace StudentsSystem.Services
 
         public async Task DeleteDisciplineAsync(int id)
         {
+            //TODO: Discipline can be removed only if there are no scores linked to it.
             var cmd = this.db.connection.CreateCommand();
             cmd.CommandText = String.Format(@"UPDATE `student_system`.`disciplines` SET SemesterId = null WHERE Id = {0};",  id);
             await cmd.ExecuteNonQueryAsync();

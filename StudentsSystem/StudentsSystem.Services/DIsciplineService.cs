@@ -16,10 +16,10 @@ namespace StudentsSystem.Services
             this.db = db;
         }
 
-        public async Task CreateDisciplineAsync(string name, string professorName)
+        public async Task CreateDisciplineAsync(string name, string professorName, int? semesterId = null)
         {
             var cmd = this.db.connection.CreateCommand();
-            cmd.CommandText = String.Format(@"INSERT INTO `student_system`.`disciplines`(`Name`,`ProfessorName`)VALUES('{0}','{1}');", name, professorName);
+            cmd.CommandText = String.Format(@"INSERT INTO `student_system`.`disciplines`(`Name`,`ProfessorName`,`SemesterId`)VALUES('{0}','{1}', {2});", name, professorName, semesterId);
             await cmd.ExecuteNonQueryAsync();
         }
 

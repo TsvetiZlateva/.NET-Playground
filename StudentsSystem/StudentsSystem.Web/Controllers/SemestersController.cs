@@ -12,10 +12,12 @@ namespace StudentsSystem.Web.Controllers
     public class SemestersController : Controller
     {
         private readonly ISemesterService semesterService;
+        private readonly IDisciplineService disciplineService;
 
-        public SemestersController(ISemesterService semesterService)
+        public SemestersController(ISemesterService semesterService, IDisciplineService disciplineService)
         {
             this.semesterService = semesterService;
+            this.disciplineService = disciplineService;
         }
 
         public async Task<IActionResult> SemestersList()
@@ -91,6 +93,32 @@ namespace StudentsSystem.Web.Controllers
             {
                 throw new Exception(ex.Message);
             }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> UpdateDiscipline(Discipline discipline)
+        {
+            if (!await this.disciplineService.DisciplineExistAsync(discipline.Id))
+            {
+                return this.NotFound();
+            }
+
+            if (!this.ModelState.IsValid)
+            {
+                return this.View("Error");
+            }
+
+            try
+            {
+                await this.disciplineService.UpdateDisciplineAsync(discipline);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+            return this.RedirectToAction(nameof(SemestersList));
         }
 
     }

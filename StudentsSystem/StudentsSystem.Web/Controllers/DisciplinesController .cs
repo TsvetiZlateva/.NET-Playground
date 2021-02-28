@@ -29,7 +29,8 @@ namespace StudentsSystem.Web.Controllers
                 {
                     Id = discipline.Id,
                     Name = discipline.Name,
-                    ProfessorName = discipline.ProfessorName
+                    ProfessorName = discipline.ProfessorName,
+                    SemesterID = discipline.SemesterID
                 };
                 view.Disciplines.Add(d);
             }
@@ -48,7 +49,8 @@ namespace StudentsSystem.Web.Controllers
 
             var name = discipline.Name;
             var professorName = discipline.ProfessorName;
-            await this.disciplineService.CreateDisciplineAsync(name, professorName);
+            var semesterId = discipline.SemesterID;
+            await this.disciplineService.CreateDisciplineAsync(name, professorName, semesterId);
 
             return this.RedirectToAction(nameof(DisciplinesList));
         }
