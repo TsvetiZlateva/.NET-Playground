@@ -59,7 +59,7 @@ namespace StudentsSystem.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> UpdateSemester(Semester semester)
-        {            
+        {
             if (!this.ModelState.IsValid)
             {
                 return this.View("Error");
@@ -75,6 +75,22 @@ namespace StudentsSystem.Web.Controllers
             }
 
             return this.RedirectToAction(nameof(SemestersList));
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> DeleteDisciplineFromSemester(int id)
+        {
+            try
+            {
+                await this.semesterService.DeleteDisciplineAsync(id);
+                return RedirectToAction(nameof(SemestersList));
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
     }

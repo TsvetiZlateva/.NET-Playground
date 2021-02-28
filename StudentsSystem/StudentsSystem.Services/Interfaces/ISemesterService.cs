@@ -13,5 +13,7 @@ namespace StudentsSystem.Services.Interfaces
         Task CreateSemesterAsync(string name, DateTime startDate, DateTime endDate);
 
         Task UpdateSemesterAsync(Semester semester);
+
+        Task DeleteDisciplineAsync(int id);
     }
 }

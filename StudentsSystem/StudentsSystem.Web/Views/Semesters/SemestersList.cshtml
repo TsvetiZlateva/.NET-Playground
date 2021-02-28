@@ -427,7 +427,7 @@
                                 <td></td>
                                 <td>
                                     <a asp-action="UpdateDiscipline" asp-route-id="@discipline.Id" class="edit" data-toggle="modal" data-target="#@editModal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                                    <a asp-action="DeleteDiscipline" asp-route-id="@discipline.Id" class="delete" data-toggle="modal" data-target="#@deleteModal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                    <a asp-action="DeleteDisciplineFromSemester" asp-route-id="@discipline.Id" class="delete" data-toggle="modal" data-target="#@deleteModal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
 
                                     <!-- Edit Modal HTML -->
                                     <div id=@editModal class="modal fade">
@@ -476,7 +476,7 @@
                                     <div id=@deleteModal class="modal fade">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
-                                                <form asp-action="DeleteDiscipline" method="post">
+                                                <form asp-action="DeleteDisciplineFromSemester" method="post">
                                                     <div class="modal-header">
                                                         <h4 class="modal-title">Delete Discipline</h4>
                                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -490,7 +490,7 @@
 
                                                     <div class="modal-footer">
                                                         <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                                                        <input asp-action="DeleteDiscipline" asp-route-id="@discipline.Id" type="submit" class="btn btn-danger" value="Delete">
+                                                        <input asp-action="DeleteDisciplineFromSemester" asp-route-id="@discipline.Id" type="submit" class="btn btn-danger" value="Delete">
                                                     </div>
                                                 </form>
                                             </div>

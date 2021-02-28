@@ -27,6 +27,13 @@ namespace StudentsSystem.Services
             await cmd.ExecuteNonQueryAsync();
         }
 
+        public async Task DeleteDisciplineAsync(int id)
+        {
+            var cmd = this.db.connection.CreateCommand();
+            cmd.CommandText = String.Format(@"UPDATE `student_system`.`disciplines` SET SemesterId = null WHERE Id = {0};",  id);
+            await cmd.ExecuteNonQueryAsync();
+        }
+
         public async Task<ICollection<Semester>> GetAllSemestersAsync()
         {
             var disciplines = await this.disciplineService.GetAllDisciplinesAsync();
