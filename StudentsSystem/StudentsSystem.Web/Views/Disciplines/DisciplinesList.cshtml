@@ -419,16 +419,19 @@
                                         <div class="modal-content">
                                             <form asp-action="DeleteDiscipline" method="post">
                                                 <div class="modal-header">
-                                                    <h4 class="modal-title">Delete Employee</h4>
+                                                    <h4 class="modal-title">Delete Discipline</h4>
                                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                                 </div>
                                                 <div class="modal-body">
                                                     <p>Are you sure you want to delete these Records?</p>
                                                     <p class="text-warning"><small>This action cannot be undone.</small></p>
                                                 </div>
+
+                                                <input type="hidden" asp-for="@discipline.Id" />
+
                                                 <div class="modal-footer">
                                                     <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                                                    <input type="submit" class="btn btn-danger" value="Delete">
+                                                    <input asp-action="DeleteDiscipline" asp-route-id="@discipline.Id" type="submit" class="btn btn-danger" value="Delete">
                                                 </div>
                                             </form>
                                         </div>

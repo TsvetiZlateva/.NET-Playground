@@ -25,6 +25,13 @@ namespace StudentsSystem.Services
             await cmd.ExecuteNonQueryAsync();
         }
 
+        public async System.Threading.Tasks.Task DeleteDisciplineAsync(int id)
+        {
+            var cmd = this.db.connection.CreateCommand();
+            cmd.CommandText = String.Format(@"DELETE FROM `student_system`.`disciplines`WHERE Id = {0};", id);
+            await cmd.ExecuteNonQueryAsync();
+        }
+
         public async Task<bool> DisciplineExistAsync(int id)
         {
             var cmd = this.db.connection.CreateCommand();

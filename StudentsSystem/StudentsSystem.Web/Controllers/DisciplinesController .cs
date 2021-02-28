@@ -70,5 +70,21 @@ namespace StudentsSystem.Web.Controllers
                 
             return this.RedirectToAction(nameof(DisciplinesList));
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> DeleteDiscipline(int id)
+        {
+            try
+            {
+                await this.disciplineService.DeleteDisciplineAsync(id);
+                return RedirectToAction(nameof(DisciplinesList));
+            }
+            catch (Exception ex)
+            {
+                //return this.RedirectToPage("/Views/Shared/Error");
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }
